@@ -1,1 +1,1 @@
-# azure-functions-boilerplate
+# Azure Functions Boilerplate
