@@ -1,1 +1,2 @@
 # Azure Functions Boilerplate
+[![Build and deploy](https://github.com/thara0402/azure-functions-boilerplate/actions/workflows/main_gunners-style-func.yml/badge.svg)](https://github.com/thara0402/azure-functions-boilerplate/actions/workflows/main_gunners-style-func.yml)
