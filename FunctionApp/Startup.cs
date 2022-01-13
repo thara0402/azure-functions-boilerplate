@@ -13,26 +13,25 @@ namespace FunctionApp
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            //var context = builder.GetContext();
-            //builder.Services.Configure<MySettings>(context.Configuration.GetSection("Function"));
+            var context = builder.GetContext();
+            builder.Services.Configure<MySettings>(context.Configuration.GetSection("Function"));
         }
 
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
             var context = builder.GetContext();
 
-            //builder.ConfigurationBuilder
-            //    .AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), optional: true, reloadOnChange: false)
-            //    .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false)
-            //    .AddEnvironmentVariables();
+            builder.ConfigurationBuilder
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), optional: true, reloadOnChange: false)
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false)
+                .AddEnvironmentVariables();
 
-//            if (context.EnvironmentName != "Development")
-//            {
-//                var config = builder.ConfigurationBuilder.Build();
-//                builder.ConfigurationBuilder
-////                        .AddAzureKeyVault(new Uri(config["Function:KeyVaultUrl"]), new DefaultAzureCredential());
-//                        .AddAzureKeyVault(new Uri("https://gunners-style.vault.azure.net/"), new DefaultAzureCredential());
-//            }
+            if (context.EnvironmentName != "Development")
+            {
+                var config = builder.ConfigurationBuilder.Build();
+                builder.ConfigurationBuilder
+                    .AddAzureKeyVault(new Uri(config["Function:KeyVaultUrl"]), new DefaultAzureCredential());
+            }
         }
     }
 }
