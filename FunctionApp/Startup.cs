@@ -30,7 +30,7 @@ namespace FunctionApp
             {
                 var config = builder.ConfigurationBuilder.Build();
                 builder.ConfigurationBuilder
-                        .AddAzureKeyVault(new Uri(config["KeyVaultUrl"]), new DefaultAzureCredential());
+                        .AddAzureKeyVault(new Uri(config["Function:KeyVaultUrl"]), new DefaultAzureCredential());
             }
         }
     }
