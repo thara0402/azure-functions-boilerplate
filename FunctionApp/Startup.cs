@@ -13,18 +13,18 @@ namespace FunctionApp
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var context = builder.GetContext();
-            builder.Services.Configure<MySettings>(context.Configuration.GetSection("Function"));
+            //var context = builder.GetContext();
+            //builder.Services.Configure<MySettings>(context.Configuration.GetSection("Function"));
         }
 
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
             var context = builder.GetContext();
 
-            builder.ConfigurationBuilder
-                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), optional: true, reloadOnChange: false)
-                .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false)
-                .AddEnvironmentVariables();
+            //builder.ConfigurationBuilder
+            //    .AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), optional: true, reloadOnChange: false)
+            //    .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false)
+            //    .AddEnvironmentVariables();
 
 //            if (context.EnvironmentName != "Development")
 //            {
