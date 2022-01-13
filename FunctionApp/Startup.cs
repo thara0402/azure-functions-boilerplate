@@ -26,13 +26,13 @@ namespace FunctionApp
                 .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables();
 
-            if (context.EnvironmentName != "Development")
-            {
-                var config = builder.ConfigurationBuilder.Build();
-                builder.ConfigurationBuilder
-//                        .AddAzureKeyVault(new Uri(config["Function:KeyVaultUrl"]), new DefaultAzureCredential());
-                        .AddAzureKeyVault(new Uri("https://gunners-style.vault.azure.net/"), new DefaultAzureCredential());
-            }
+//            if (context.EnvironmentName != "Development")
+//            {
+//                var config = builder.ConfigurationBuilder.Build();
+//                builder.ConfigurationBuilder
+////                        .AddAzureKeyVault(new Uri(config["Function:KeyVaultUrl"]), new DefaultAzureCredential());
+//                        .AddAzureKeyVault(new Uri("https://gunners-style.vault.azure.net/"), new DefaultAzureCredential());
+//            }
         }
     }
 }
