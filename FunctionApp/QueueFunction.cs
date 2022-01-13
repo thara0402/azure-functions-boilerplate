@@ -5,10 +5,10 @@ using Microsoft.Extensions.Logging;
 
 namespace FunctionApp
 {
-    public class Function2
+    public class QueueFunction
     {
-        [FunctionName("Function2")]
-        public void Run([QueueTrigger("myqueue-items", Connection = "TestConnection")] string myQueueItem, ILogger log)
+        [FunctionName(nameof(QueueFunction))]
+        public void Run([QueueTrigger("myqueue-items", Connection = "StorageBindingConnection")] string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# Queue trigger function processed: {myQueueItem}");
         }
