@@ -5,17 +5,30 @@
 
 ```json
 {
-  "WebApi": {
-    "StorageConnection": "UseDevelopmentStorage=true"
+  "Function": {
+    "SqlConnection": "SQL Connection for Secret Manager."
   }
 }
 ```
+## local.settings.json
+
+```json
+{
+    "IsEncrypted": false,
+    "Values": {
+      "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+      "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+      "StorageBindingConnection": "UseDevelopmentStorage=true"
+    }
+}
+```
+
 ## Azurite
 ```shell
 $ docker run --rm -it -p 10000:10000 -p 10001:10001 -p 10002:10002 -v c:/azurite:/data mcr.microsoft.com/azure-storage/azurite:3.12.0
 ```
 
-## Use Key Vault from App Service with Azure Managed Identity
+## Use Key Vault from Functions with Azure Managed Identity
 ```shell
 $ az functionapp identity assign --name "<Function Apps Name>" --resource-group "<Resource Group Name>"
 {
