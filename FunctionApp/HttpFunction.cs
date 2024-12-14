@@ -2,30 +2,32 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+//using Microsoft.Azure.WebJobs;
+//using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using Microsoft.Extensions.Options;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.Azure.Functions.Worker;
 
 namespace FunctionApp
 {
     public class HttpFunction
     {
+        private readonly ILogger<HttpFunction> _logger;
         private readonly MySettings _settings;
 
-        public HttpFunction(IOptions<MySettings> optionsAccessor)
+        public HttpFunction(ILogger<HttpFunction> logger, IOptions<MySettings> optionsAccessor)
         {
+            _logger = logger;
             _settings = optionsAccessor.Value;
         }
 
-        [FunctionName(nameof(HttpFunction))]
-        public IActionResult Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-            ILogger log)
+        [Function(nameof(HttpFunction))]
+        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
 
             var responseMessage = $"SqlConnection : {_settings.SqlConnection}, KeyVaultUrl : {_settings.KeyVaultUrl}";
 
