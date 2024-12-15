@@ -8,8 +8,8 @@ namespace FunctionApp
 {
     public class MySettings
     {
-        public string SqlConnection { get; set; }
+        public required string SqlConnection { get; set; }
 
-        public string KeyVaultUrl { get; set; }
+        public required string KeyVaultUrl { get; set; }
     }
 }

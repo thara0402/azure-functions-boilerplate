@@ -21,7 +21,11 @@ builder.Services
 
 if (builder.Configuration["AzureWebJobsStorage"] != "UseDevelopmentStorage=true")
 {
-    builder.Configuration.AddAzureKeyVault(new Uri(builder.Configuration["Function:KeyVaultUrl"]), new DefaultAzureCredential());
+    var keyVaultUrl = builder.Configuration["Function:KeyVaultUrl"];
+    if (!string.IsNullOrEmpty(keyVaultUrl))
+    {
+        builder.Configuration.AddAzureKeyVault(new Uri(keyVaultUrl), new DefaultAzureCredential());
+    }
 }
 
 builder.Build().Run();
